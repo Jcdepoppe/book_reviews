@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books/css/bootstrap.min.css' %}">
+    <script type=text/javascript src="{% static 'books/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+    <div class='container'>
+        <div class="d-flex bd-highlight p-3 mb-2 bg-dark text-white">
+            <h3 class="p-2 flex-grow-1 bd-highlight">Hello {{user.alias}}</h3>
+            <a class="p-2 bd-highlight" href='add'>Add a book and review</a>
+            <a class="p-2 bd-highlight" href='/'>Log out</a>
+        </div>
+        <div class='reviews'>
+            <h3>Recent reviews</h3>
+            {%for review in reviews%}
+                <a>{{review.book.title}}</a>
+                <p>Rating: {{review.rating}}</p>
+                <p><a>{{review.user.alias}}</a> - {{review.review}}</p>
+            {%endfor%}
+        </div>
+        <div class='books'>
+            <h3>All books with reviews</h3>
+            {%for book in books%}
+                <a>{{book.title}}</a>
+            {%endfor%}
+        </div>
+    </div>
+</body>
+</html>
